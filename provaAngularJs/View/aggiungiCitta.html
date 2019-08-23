@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Inserisci Città</title>
+    <script type="text/javascript" src="scripts/cittaController.js"></script>
+    
+    <script src="./scripts/angular.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="cittaController">
+        <p>Città: <input type="text" ng-model="nome" /></p>
+        <p>Regione: <input type="text" ng-model="regione" /></p>
+        <p><button ng-click="aggiungiCitta()">Aggiungi</button></p>
+        <p><button ng-click="next()">Next</button></p>
+    </div>
+</body>
+</html>

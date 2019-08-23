@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Angular</title>
+   
+    <link href="CSS/style.css" rel="stylesheet" type="text/css">
+
+    <script src="./scripts/angular.js"></script>
+
+    <script type="text/javascript" src="./scripts/indexController.js"></script>
+    <script type="text/javascript" src="./scripts/userController.js"></script>
+    <script type="text/javascript" src="./scripts/greetingController.js"></script>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+
+    <meta charset="utf-8" />
+</head>
+<body ng-app="myApp">
+    
+    <h1 class="header-red">Hello Angular</h1>
+
+
+    <div ng-controller="userController">
+        <p>Inserisci il tuo nome: <input type="text" ng-model="utente.name"></p>
+        <p>Inserisci il tuo cognome: <input type="text" ng-model="utente.surname"></p>
+
+        <div ng-controller="greetingController">
+            <p ng-if="utente.name || utente.surname">{{saluta()}}</p>
+        </div>
+
+       <table>
+            <tr class="header-red"><th>Indice</th><th>Nome</th><th>Cognome</th><th>Città</th></tr>
+            <tr ng-repeat="persona in persone | orderBy: 'nome'">
+                <td>{{$index+1}}</td>
+                <td>{{persona.nome}}</td>
+                <td>{{persona.cognome}}</td>
+                <td>{{persona.citta}}</td>
+            </tr>
+        </table>
+        <br />
+        
+        
+            Filtra per nome: <input type="text" ng-model="filtro">
+        <ul>
+            <li ng-repeat="citta in elencoCitta | filter: {nome:filtro}">{{citta.nome}}</li>
+        </ul>
+        <br />
+        <div>
+            <select ng-model="selectedItem"
+                    ng-options="citta.nome group by citta.regione for citta in elencoCitta | orderBy: 'nome'"></select>
+
+            <p>Hai selezionato {{selectedItem}}!</p>
+        </div>
+         <div>
+            <input type="number" ng-model="numero1" />
+            +
+            <input type="number" ng-model="numero2" />
+            +
+            <input type="number" ng-model="numero3" />
+            =
+            <input type="number" ng-model="risultato" />
+        </div>
+        <button ng-click="somma()">Somma</button>
+        
+        <p>Colore: <input type="text" ng-model="colore"></p>
+        <p class="{{colore | lowercase}}">
+            È stato scelto il colore {{colore}}
+        </p>
+
+        <p>Crea la tua password: <input type="password" ng-model="password"></p>
+        <p ng-class="{'rosso': password.length < 4, 'giallo': password.length >= 4 && password.length < 8, 'verde': password.length >= 8}">
+            Robustezza della password
+        </p>
+
+        <form name="myForm" novalidate>
+            <input type="text" ng-model="utente.nome"
+                   name="nomeUtente"
+                   ng-maxlength="20"
+                   ng-required="true">
+            <div ng-show="myForm.nomeUtente.$invalid">
+                Il nome utente è obbligatorio e non può superare i 20 caratteri
+            </div>
+            <button type="submit" ng-disabled="myForm.$invalid" ng-click="invia(utente)">Invia</button>
+        </form><!---->
+
+    </div>
+
+</body>
+</html>

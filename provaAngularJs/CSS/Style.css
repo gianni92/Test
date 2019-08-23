@@ -1,0 +1,23 @@
+﻿.rosso {
+    color: red;
+}
+
+.verde {
+    color: green;
+}
+
+.giallo {
+    color: yellow;
+}
+
+.header-red {
+    color: red;
+}
+.ng-valid {
+    border-color: green
+
+}
+.ng-invalid {
+    border-color: red
+
+}
