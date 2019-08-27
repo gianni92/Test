@@ -15,9 +15,13 @@ namespace OwinSelfHostSample
         }
 
         // GET api/values/5 
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            if(id != 5)
+            {
+                return BadRequest();
+            }
+            return Ok("value");
         }
 
         // POST api/values 
