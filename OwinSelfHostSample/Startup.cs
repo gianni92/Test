@@ -15,7 +15,7 @@ namespace OwinSelfHostSample
         {
             // Configure Web API for self-host. 
             HttpConfiguration config = new HttpConfiguration();
-            config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes();//per esporre endpoint personalizzati
 
             config.EnableCors(new EnableCorsAttribute(origins: "*", headers: "*", methods: "GET,POST,PUT,DELETE"));
             config.Routes.MapHttpRoute(
