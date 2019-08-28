@@ -15,11 +15,15 @@ namespace OwinSelfHostSample
         {
             // Configure Web API for self-host. 
             HttpConfiguration config = new HttpConfiguration();
+            config.MapHttpAttributeRoutes();
+
             config.EnableCors(new EnableCorsAttribute(origins: "*", headers: "*", methods: "GET,POST,PUT,DELETE"));
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional
+                defaults: new
+                {
+                    id = RouteParameter.Optional
                 }
             );
             SwaggerConfig.Register(config);
